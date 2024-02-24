@@ -5,11 +5,13 @@ import ShowText from './components/ShowText/ShowText';
 import SelectedWord from './components/SelectedWord/SelectedWord';
 import RearrangedWordList from './components/RearrangedWordList/RearrangedWordList';
 import BlankWordList from './components/BlankWordList/BlankWordList';
+import Language from './components/Language/Language';
 function App() {
   
 
   return (
     <>
+    <Language/>
     <UploadSection/>
     <ShowText/>
     <SelectedWord/>

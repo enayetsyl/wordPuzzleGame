@@ -7,7 +7,7 @@ import Heading from "../Shared/Heading"
 import { getRandomColor, makePdf } from "../../lib/functions"
 
 const RearrangedWordList = () => {
-  const {rearrangedArray, language, wordColor} = useGlobalContext()
+  const {rearrangedArray, language, wordColor, siteLanguage} = useGlobalContext()
 
 
   return (
@@ -15,7 +15,15 @@ const RearrangedWordList = () => {
     {
       rearrangedArray?.length > 0 && language !== 'ben' && (
         <div>
-      <Heading className='text-center text-xl font-bold'>Below is your rearrange word list</Heading>
+      {/* Heading */}
+      {
+        siteLanguage === 'ben' ? (
+          <Heading className='text-center text-xl font-bold'>নিচে আপনার এলোমেলো করা শব্দ দেয়া হল </Heading>
+        ) : (
+          <Heading className='text-center text-xl font-bold'>Below is your rearrange word list</Heading>
+        )
+      }
+      {/* Rearranged Word list */}
       <ul id="image-download" className="space-y-1">
         {
           rearrangedArray?.map((word, idx) => <li key={idx}
@@ -38,9 +46,16 @@ const RearrangedWordList = () => {
         }
         <li className="text-white" >.</li>
       </ul>
+
+        {/* Download button */}
+
         <Button className='bg-purple-600 rounded-lg font-bold text-white'
         onClick={() => makePdf(rearrangedArray,language, "image-download",'Correct Following Words', "Re_arrange", wordColor)}
-        >Download</Button>
+        >
+          {
+            siteLanguage === 'ben' ? 'ডাউনলোড করুন' : 'Download'
+          }
+          </Button>
     </div>
       )
     }

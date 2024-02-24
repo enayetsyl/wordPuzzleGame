@@ -13,7 +13,7 @@ const UploadSection = () => {
   // Import from global context
   const {  setText, language, setLanguage, imageUrl, setImageUrl, setChosenWord, isLoading,
     setIsLoading,setRearrangedArray,
-    setBlankWord } =
+    setBlankWord, siteLanguage } =
     useGlobalContext();
 
 
@@ -26,11 +26,14 @@ const UploadSection = () => {
   const handleClick = () => {
     // validation
     if (!language) {
-      toast.error("দয়া করে ছবিতে কি ভাষা আছে তা সিলেক্ট করুন ।");
+      siteLanguage === 'ben' ? toast.error("দয়া করে ছবিতে কি ভাষা আছে তা সিলেক্ট করুন ।")
+      : toast.error('Please select a language of the picture text.')
+
       return;
     }
     if (!imageUrl) {
-      toast.error("দয়াকরে একটি ছবি যুক্ত করুন । ");
+      siteLanguage === 'ben' ? toast.error("দয়াকরে একটি ছবি যুক্ত করুন । ") :
+      toast.error('Please add a picture')
       return;
     }
     setChosenWord([])
@@ -49,10 +52,14 @@ const UploadSection = () => {
     <div className="m-5">
       
       {/* Page heading */}
-      
-      <Heading className="text-center font-bold text-3xl">
+      {
+        siteLanguage === 'ben' ? (<Heading className="text-center font-bold text-3xl">
+        ছবি থেকে শব্দে পরিবর্তন 
+      </Heading>) : (<Heading className="text-center font-bold text-3xl">
         Image to word converter
-      </Heading>
+      </Heading>)
+      }
+      
       {/* Image upload section */}
       <div className="my-3">
         <Heading className="text-lg my-2">
@@ -63,15 +70,31 @@ const UploadSection = () => {
 
       {/* Showing selected language  */}
         {language && (
-          <p>
-            Your selected language is -   
-            <span className="text-purple-600">
-              {(language === "ara" && "Arabic") ||
-              (language === "ben" && "Bangla") ||
-              (language === "eng" && "English")}
-            </span>
+          <>
+           {
+            siteLanguage === 'ben' ? (
+             <p>
+               আপনার ছবির ভাষা -   
+              <span className="text-purple-600">
+                {(language === "ara" &&  "আরবি") ||
+                (language === "ben" && "বাংলা") ||
+                (language === "eng" && "ইংরেজি")}
+              </span>
+             </p>
+            ) :
+            (
+              <p>
+               Your selected language is -   
+              <span className="text-purple-600">
+                {(language === "ara" && "Arabic") ||
+                (language === "ben" && "Bangla") ||
+                (language === "eng" && "English")}
+              </span>
+             </p>
+            )
+           }
             
-          </p>
+          </>
         )}
 
       </div>
@@ -92,7 +115,13 @@ const UploadSection = () => {
         onClick={openBrowseImage}
         className="h-20 border-2 border-purple-700 text-orange-500 flex justify-center items-center"
       >
-        Click Here to upload file
+        {
+          siteLanguage === 'ben' ? (
+            <h1>ছবি আপলোড করতে এখানে ক্লিক করুন । </h1>
+            ) : (
+              <h1>Click Here to upload image</h1>
+          )
+        }
       </div>
 
         {/* Convert button */}
@@ -103,12 +132,17 @@ const UploadSection = () => {
           className="bg-purple-700 font-bold text-white"
           disabled
         >
-          Loading Wait
+          {
+            siteLanguage === 'ben' ? 'অপেক্ষা করুন লোড হচ্ছে' : 'Loading Wait'
+          }
         </Button> :<Button
           className="bg-purple-700 font-bold text-white"
           onClick={handleClick}
         >
-          Convert
+           {
+            siteLanguage === 'ben' ? 'প্রসেস করুন' : 'Convert'
+          }
+          
         </Button>
         }
       </div>

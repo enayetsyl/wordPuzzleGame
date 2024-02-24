@@ -18,6 +18,7 @@ export const useGlobalContext = () => {
 const GlobalContextProvider = ({ children }) => {
   // States
   const [text, setText] = useState("");
+  const [siteLanguage, setSiteLanguage] = useState('ben')
   const [language, setLanguage] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
   const [wordList, setWordList] = useState([]);
@@ -128,7 +129,8 @@ const GlobalContextProvider = ({ children }) => {
     fillInTheBlankFunction,
     blankWord,
     setBlankWord,
-    wordColor, setWordColor
+    wordColor, setWordColor,
+    siteLanguage, setSiteLanguage
   };
 
   return (
