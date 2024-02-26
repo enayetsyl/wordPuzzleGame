@@ -27,6 +27,7 @@ const GlobalContextProvider = ({ children }) => {
   const [chosenWord, setChosenWord] = useState([]);
   const [blankWord, setBlankWord] = useState([]);
   const [wordColor, setWordColor] = useState('')
+  const [isOn, setIsOn] = useState(false);
   const excludedWord = [
     "a",
     "and",
@@ -130,7 +131,7 @@ const GlobalContextProvider = ({ children }) => {
     blankWord,
     setBlankWord,
     wordColor, setWordColor,
-    siteLanguage, setSiteLanguage
+    siteLanguage, setSiteLanguage,isOn, setIsOn
   };
 
   return (
