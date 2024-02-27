@@ -1,5 +1,6 @@
 
 const Heading = ({children, className}) => {
+  
   return (
     <h1 className={className}>
       {children}

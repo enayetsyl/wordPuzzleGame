@@ -8,6 +8,8 @@ import BlankWordList from "./components/BlankWordList/BlankWordList";
 import Language from "./components/Language/Language";
 import Bulb from "./components/Bulb/Bulb";
 import { useGlobalContext } from "./Context/GlobalContext";
+import DeveloperInfo from "./components/DeveloperInfo/DeveloperInfo";
+import RandomQuranAayat from "./components/RandomQuranAayat/RandomQuranAayat";
 function App() {
   const {isOn} = useGlobalContext()
   return (
@@ -15,8 +17,7 @@ function App() {
     <Bulb/>
       <div 
       className={isOn ? "" : "text-black bg-black z-20"}
-      // className={`bg-${isOn ? "gray-800 " : "white"} text-${isOn ? "white" : "black"} ${isOn ? "dark" : ""}`}
-      
+        
       >
       {
         isOn ? (<>
@@ -26,6 +27,8 @@ function App() {
       <SelectedWord />
       <RearrangedWordList />
       <BlankWordList />
+      <DeveloperInfo/>
+      <RandomQuranAayat/>
         </>) : (<div className="h-[3000px] bg-black"></div>)
       }
       
