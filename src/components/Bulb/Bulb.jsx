@@ -2,6 +2,7 @@ import { useState } from "react";
 import off from "../../assets/off.png";
 import on from "../../assets/on.png";
 import { useGlobalContext } from "../../Context/GlobalContext";
+import StopWatch from "../StopWatch/StopWatch";
 
 const Bulb = () => {
   const {isOn, setIsOn} = useGlobalContext()
@@ -56,6 +57,9 @@ const Bulb = () => {
         dangerouslySetInnerHTML={{ __html: `<style>${style}</style>` }}
       ></div>
       <div className="container">
+        <div>
+          <StopWatch/>
+        </div>
         <div className="bulb">
           <div id="off" style={{ display: isOn ? "none" : "block" }}>
             <img src={off} alt="" />
