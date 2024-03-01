@@ -1,7 +1,7 @@
-import { toast } from "react-toastify";
-import { useGlobalContext } from "../../Context/GlobalContext";
-import Button from "../Shared/Button";
-import Heading from "../Shared/Heading";
+import { toast } from 'react-toastify';
+import { useGlobalContext } from '../../Context/GlobalContext';
+import Button from '../Shared/Button';
+import Heading from '../Shared/Heading';
 
 const SelectedWord = () => {
   const {
@@ -24,7 +24,7 @@ const SelectedWord = () => {
     // Update the chosenWord array
     setChosenWord(updatedChosenWord);
 
-    siteLanguage === "ben"
+    !siteLanguage
       ? toast.success(`"${wordToRemove}" আপনার তালিকা থেকে সরানো হয়েছে।`)
       : toast.success(`"${wordToRemove}" is removed from the list.`);
   };
@@ -41,11 +41,10 @@ const SelectedWord = () => {
   };
 
   return (
-    <div>
+    <div className="mx-5">
       {/* Heading */}
-
-      {siteLanguage === "ben" ? (
-        <Heading className="my-3 text-xl text-center font-bold">
+      {!siteLanguage ? (
+        <Heading className="my-3 text-xl text-center font-bold mt-12">
           উপরের তালিকা থেকে নির্বাচিত শব্দ
         </Heading>
       ) : (
@@ -55,14 +54,14 @@ const SelectedWord = () => {
       )}
 
       {/* Showing words that user selected */}
-      <div>
-        <ul>
+      <div className="border-2 border-theme rounded-xl p-6 overflow-x-hidden overflow-y-auto max-h-[400px] mt-6">
+        <ul className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
           {chosenWord &&
             chosenWord?.map((word) => (
               <li
                 key={word}
                 onClick={() => handleRemove(word)}
-                className="cursor-pointer"
+                className="cursor-pointer font-medium hover:underline hover:text-theme"
                 title="Remove from here."
               >
                 {word}
@@ -74,91 +73,89 @@ const SelectedWord = () => {
       {/* Color picker option */}
       {chosenWord?.length > 0 && (
         <>
-          {
-            siteLanguage === 'ben' ? (
-              <div>
-            <h1 htmlFor="">অক্ষরের রঙ নির্বাচন করুন । </h1>
-            <label htmlFor="black">
-              <input
-                type="radio"
-                name="color"
-                id="black"
-                onClick={() => setWordColor("black")}
-              />
-              কালো
-            </label>
-            <label htmlFor="mixed">
-              <input
-                type="radio"
-                name="color"
-                id="mixed"
-                onClick={() => setWordColor("mixed")}
-              />
-              রঙিন 
-            </label>
-          </div>
-            ) : (
-              <div>
-            <h1 htmlFor="">
-              Select color for the letters.</h1>
-            <label htmlFor="black">
-              <input
-                type="radio"
-                name="color"
-                id="black"
-                onClick={() => setWordColor("black")}
-              />
-              Black
-            </label>
-            <label htmlFor="mixed">
-              <input
-                type="radio"
-                name="color"
-                id="mixed"
-                onClick={() => setWordColor("mixed")}
-              />
-              Mixed
-            </label>
-          </div>
-            )
-          }
-{/* Fill in the blanks button */}
-         {
-          siteLanguage === 'ben' ? (
-            <Button
-            className="text-lg text-white font-bold bg-violet-600"
-            onClick={handleFillInTheBlank}
-          >
-            শূন্যস্থান 
-          </Button>
+          {!siteLanguage ? (
+            <div className="mt-6">
+              <h1 htmlFor="" className="font-medium text-xl">
+                অক্ষরের রঙ নির্বাচন করুন :{' '}
+              </h1>
+              <div className="flex gap-x-4 my-1">
+                <label htmlFor="black">
+                  <input
+                    type="radio"
+                    name="color"
+                    id="black"
+                    onClick={() => setWordColor('black')}
+                  />
+                  কালো
+                </label>
+                <label htmlFor="mixed">
+                  <input
+                    type="radio"
+                    name="color"
+                    id="mixed"
+                    onClick={() => setWordColor('mixed')}
+                  />
+                  রঙিন
+                </label>
+              </div>
+            </div>
           ) : (
-            <Button
-            className="text-lg text-white font-bold bg-violet-600"
+            <div className="mt-6">
+              <h1 htmlFor="" className="font-medium text-xl">
+                Select color for the letters:
+              </h1>
+              <div className="flex gap-x-4 my-1">
+                <label htmlFor="black">
+                  <input
+                    type="radio"
+                    name="color"
+                    id="black"
+                    onClick={() => setWordColor('black')}
+                    className="ring-theme"
+                  />
+                  Black
+                </label>
+                <label htmlFor="mixed">
+                  <input
+                    type="radio"
+                    name="color"
+                    id="mixed"
+                    onClick={() => setWordColor('mixed')}
+                    className="ring-theme"
+                  />
+                  Mixed
+                </label>
+              </div>
+            </div>
+          )}
+          {/* Fill in the blanks button */}
+
+          <Button
+            className="text-lg text-white font-bold my-6 mr-3"
             onClick={handleFillInTheBlank}
           >
-            Fill in the Blank
+            {!siteLanguage ? 'শূন্যস্থান' : '  Fill in the Blank'}
           </Button>
-          )
-         }
         </>
       )}
-      {language !== "ben" && chosenWord?.length > 0 && (
-        siteLanguage === 'ben' ? (
+
+      {language !== 'ben' &&
+        chosenWord?.length > 0 &&
+        (!siteLanguage ? (
           <Button
-          className="text-lg text-white font-bold bg-violet-600"
-          onClick={handleRearrange}
-        >
-          এলোমেলো
-        </Button>
+            className="text-lg text-white font-bold"
+            onClick={handleRearrange}
+          >
+            এলোমেলো
+          </Button>
         ) : (
           <Button
-          className="text-lg text-white font-bold bg-violet-600"
-          onClick={handleRearrange}
-        >
-          Rearrange
-        </Button>
-        )
-      )}
+            className="text-lg text-white font-bold"
+            onClick={handleRearrange}
+          >
+            Rearrange
+          </Button>
+        ))}
     </div>
   );
 };

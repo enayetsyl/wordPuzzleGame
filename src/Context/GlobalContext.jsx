@@ -1,11 +1,11 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from 'react';
 import {
   removeCommonWords,
   removeDuplicates,
   removeShortWords,
   replaceLetter,
   shuffleArray,
-} from "../lib/functions";
+} from '../lib/functions';
 
 // Creating context
 const GlobalContext = createContext();
@@ -17,8 +17,8 @@ export const useGlobalContext = () => {
 
 const GlobalContextProvider = ({ children }) => {
   // States
-  const [text, setText] = useState("");
-  const [siteLanguage, setSiteLanguage] = useState('ben')
+  const [text, setText] = useState('');
+  const [siteLanguage, setSiteLanguage] = useState(true);
   const [language, setLanguage] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
   const [wordList, setWordList] = useState([]);
@@ -26,24 +26,24 @@ const GlobalContextProvider = ({ children }) => {
   const [rearrangedArray, setRearrangedArray] = useState([]);
   const [chosenWord, setChosenWord] = useState([]);
   const [blankWord, setBlankWord] = useState([]);
-  const [wordColor, setWordColor] = useState('')
-  const [isOn, setIsOn] = useState(false);
+  const [wordColor, setWordColor] = useState('');
+  const [isOn, setIsOn] = useState(true);
   const excludedWord = [
-    "a",
-    "and",
-    "is",
-    "am",
-    "are",
-    "was",
-    "can",
-    "may",
-    "the",
+    'a',
+    'and',
+    'is',
+    'am',
+    'are',
+    'was',
+    'can',
+    'may',
+    'the',
   ];
 
-  console.log("converted word list", wordList);
-  console.log("user chosen word", chosenWord);
-  console.log("rearranged array", rearrangedArray);
-  console.log("blank", blankWord);
+  console.log('converted word list', wordList);
+  console.log('user chosen word', chosenWord);
+  console.log('rearranged array', rearrangedArray);
+  console.log('blank', blankWord);
 
   // Word list collected from user
 
@@ -54,7 +54,7 @@ const GlobalContextProvider = ({ children }) => {
       // Replace any punctuation marks with spaces and split the paragraph into an array of words
       setIsLoading(true);
       const wordsArray = text
-        .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, " ")
+        .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, ' ')
         .split(/\s+/);
       const longWord = removeShortWords(wordsArray);
       const uniqueWords = removeDuplicates(longWord);
@@ -71,7 +71,7 @@ const GlobalContextProvider = ({ children }) => {
   const rearrangeWords = (chosenWord) => {
     // Check if wordsArray is an array
     if (!Array.isArray(chosenWord)) {
-      console.error("Input is not an array");
+      console.error('Input is not an array');
       return;
     }
     const rearrangedArray = [];
@@ -79,11 +79,11 @@ const GlobalContextProvider = ({ children }) => {
     // Iterate through each word in the input array
     chosenWord.forEach((word) => {
       // Convert the word into an array of characters
-      const characters = word.split("");
+      const characters = word.split('');
 
       // Rearrange the characters of the word twice
-      const rearrangedWord1 = shuffleArray(characters).join("");
-      const rearrangedWord2 = shuffleArray(characters).join("");
+      const rearrangedWord1 = shuffleArray(characters).join('');
+      const rearrangedWord2 = shuffleArray(characters).join('');
 
       // Push the rearranged words into the output array
       rearrangedArray.push(rearrangedWord1, rearrangedWord2);
@@ -98,18 +98,17 @@ const GlobalContextProvider = ({ children }) => {
 
   const fillInTheBlankFunction = (words) => {
     let modifiedWords = [];
-   
 
     words.forEach((word) => {
       // Push the modified word into the new array
-      modifiedWords.push(replaceLetter(word)); 
-      modifiedWords.push(replaceLetter(word)); 
+      modifiedWords.push(replaceLetter(word));
+      modifiedWords.push(replaceLetter(word));
     });
-    const shuffleWords = shuffleArray(modifiedWords)
+    const shuffleWords = shuffleArray(modifiedWords);
     setBlankWord(shuffleWords);
   };
 
-  console.log(wordColor)
+  console.log(wordColor);
   // Value
   const value = {
     text,
@@ -130,8 +129,12 @@ const GlobalContextProvider = ({ children }) => {
     fillInTheBlankFunction,
     blankWord,
     setBlankWord,
-    wordColor, setWordColor,
-    siteLanguage, setSiteLanguage,isOn, setIsOn
+    wordColor,
+    setWordColor,
+    siteLanguage,
+    setSiteLanguage,
+    isOn,
+    setIsOn,
   };
 
   return (

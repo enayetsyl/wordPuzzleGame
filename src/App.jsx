@@ -1,39 +1,38 @@
-import { ToastContainer } from "react-toastify";
-import UploadSection from "./components/UploadSection";
-import "react-toastify/dist/ReactToastify.css";
-import ShowText from "./components/ShowText/ShowText";
-import SelectedWord from "./components/SelectedWord/SelectedWord";
-import RearrangedWordList from "./components/RearrangedWordList/RearrangedWordList";
-import BlankWordList from "./components/BlankWordList/BlankWordList";
-import Language from "./components/Language/Language";
-import Bulb from "./components/Bulb/Bulb";
-import { useGlobalContext } from "./Context/GlobalContext";
-import DeveloperInfo from "./components/DeveloperInfo/DeveloperInfo";
-import RandomQuranAayat from "./components/RandomQuranAayat/RandomQuranAayat";
+import { ToastContainer } from 'react-toastify';
+import UploadSection from './components/UploadSection';
+import 'react-toastify/dist/ReactToastify.css';
+import ShowText from './components/ShowText/ShowText';
+import SelectedWord from './components/SelectedWord/SelectedWord';
+import RearrangedWordList from './components/RearrangedWordList/RearrangedWordList';
+import BlankWordList from './components/BlankWordList/BlankWordList';
+import Language from './components/Language/Language';
+import Bulb from './components/Bulb/Bulb';
+import { useGlobalContext } from './Context/GlobalContext';
+import DeveloperInfo from './components/DeveloperInfo/DeveloperInfo';
+import RandomQuranAayat from './components/RandomQuranAayat/RandomQuranAayat';
 function App() {
-  const {isOn} = useGlobalContext()
+  const { isOn } = useGlobalContext();
   return (
-    <>
-    <Bulb/>
-      <div 
-      className={isOn ? "" : "text-black bg-black z-20"}
-        
-      >
-      {
-        isOn ? (<>
-        <Language />
-      <UploadSection />
-      <ShowText />
-      <SelectedWord />
-      <RearrangedWordList />
-      <BlankWordList />
-      <DeveloperInfo/>
-      <RandomQuranAayat/>
-        </>) : (<div className="h-[3000px] bg-black"></div>)
-      }
-      
-      </div>
-
+    <div className="relative">
+      <Bulb />
+      {isOn ? (
+        <div className="py-12 md:py-20">
+          <div className={`container px-4 mx-auto max-w-[1100px]`}>
+            <>
+              <Language />
+              <UploadSection />
+              <ShowText />
+              <SelectedWord />
+              <RearrangedWordList />
+              <BlankWordList />
+              {/* <DeveloperInfo /> */}
+              {/* <RandomQuranAayat /> */}
+            </>
+          </div>
+        </div>
+      ) : (
+        <div className="h-[3000px] bg-black"></div>
+      )}
       <ToastContainer
         position="top-center"
         autoClose={5000}
@@ -47,7 +46,7 @@ function App() {
         theme="colored"
         transition:Bounce
       />
-    </>
+    </div>
   );
 }
 

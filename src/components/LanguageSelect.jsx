@@ -1,43 +1,53 @@
-import { useGlobalContext } from "../Context/GlobalContext";
+import { useGlobalContext } from '../Context/GlobalContext';
+import Language from './Language/Language';
+
+const options = [
+  {
+    value: 'ara',
+    banglaLabel: 'আরবি',
+    label: 'Arabic',
+  },
+  {
+    value: 'ben',
+    banglaLabel: 'বাংলা',
+    label: 'Bangla',
+  },
+  {
+    value: 'eng',
+    banglaLabel: 'ইংরেজি',
+    label: 'English',
+  },
+];
 
 const LanguageSelect = ({ setLanguage }) => {
-  const {siteLanguage} = useGlobalContext()
+  const { siteLanguage } = useGlobalContext();
+
+  const handleLanguageSelect = (e) => {
+    console.log(Language);
+    setLanguage(e.target.value);
+  };
   return (
     <div>
-      {
-        siteLanguage === 'ben' ? (
-<select
+      <select
         name="lan"
         id=""
-        className="py-1 bg-teal-600 rounded-lg px-4"
+        className="py-2.5 bg-white shadow_light bg-opacity-50 rounded-lg px-4"
         value=""
-        onChange={(e) => setLanguage(e.target.value)}
+        onChange={(e) => handleLanguageSelect(e)}
       >
-        <option disabled value="">
-          ছবির লেখার ভাষা নির্ধারণ করুন 
+        <option hidden>
+          {siteLanguage
+            ? 'Select Language of Image'
+            : 'ছবির লেখার ভাষা নির্ধারণ করুন'}
         </option>
-        <option value="ara">আরবি </option>
-        <option value="ben">বাংলা</option>
-        <option value="eng">ইংরেজি</option>
+        {options.map((item, i) => {
+          return (
+            <option value={item.value} key={i} className="text-black p-2">
+              {!siteLanguage ? item.banglaLabel : item.label}
+            </option>
+          );
+        })}
       </select>
-        )  : (
-          <select
-        name="lan"
-        id=""
-        className="py-1 bg-teal-600 rounded-lg px-4"
-        value=""
-        onChange={(e) => setLanguage(e.target.value)}
-      >
-        <option disabled value="">
-          Select Language of Image
-        </option>
-        <option value="ara">Arabic</option>
-        <option value="ben">Bangla</option>
-        <option value="eng">English</option>
-      </select>
-        )
-      }
-     
     </div>
   );
 };
