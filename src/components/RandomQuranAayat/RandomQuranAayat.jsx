@@ -31,7 +31,7 @@ const RandomQuranAayat = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       getRandomAyat(quran);
-    }, 10000); // Reopen modal every 30 seconds
+    }, 60000); // Reopen modal every 30 seconds
 
     return () => clearInterval(interval); // Cleanup interval
   }, [quran]);

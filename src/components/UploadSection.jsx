@@ -83,18 +83,18 @@ const UploadSection = () => {
               <p>
                 আপনার ছবির ভাষা:
                 <span className="text-theme font-bold">
-                  {(language === 'ara' && 'আরবি') ||
-                    (language && 'বাংলা') ||
-                    (language === 'eng' && 'ইংরেজি')}
+                  {(language === 'ara' && ' আরবি') ||
+                    (language === 'ben' && ' বাংলা') ||
+                    (language === 'eng' && ' ইংরেজি')}
                 </span>
               </p>
             ) : (
               <p>
-                Your selected language is:
-                <span className="text-theme font-bold">
-                  {(language === 'ara' && 'Arabic') ||
-                    (language && 'Bangla') ||
-                    (language === 'eng' && 'English')}
+                Your selected language is: 
+                <span className="text-theme font-bold"> 
+                  {(language === 'ara' && ' Arabic') ||
+                    (language === 'ben' && ' Bangla') ||
+                    (language === 'eng' && ' English')}
                 </span>
               </p>
             )}
@@ -118,18 +118,20 @@ const UploadSection = () => {
         onClick={openBrowseImage}
         className="h-36 border-2 border-theme text-theme font-bold flex justify-center items-center rounded-xl hover:bg-theme hover:bg-opacity-10 duration-300 hover:cursor-pointer"
       >
-        {!siteLanguage ? (
-          <h1>ছবি আপলোড করতে এখানে ক্লিক করুন ।</h1>
-        ) : (
-          <h1>Click Here to upload image</h1>
-        )}
+        
+          <h1 className='text-center'>
+            {
+!siteLanguage ? 'ছবি আপলোড করতে এখানে ক্লিক করুন ।' : 'Click here to upload image.'
+            }
+            </h1>
+       
       </div>
 
       {/* Convert button */}
       <div className="text-center my-2">
         {isLoading ? (
           <Button className="font-bold text-white" disabled>
-            {!siteLanguage ? 'অপেক্ষা করুন লোড হচ্ছে' : 'Loading Wait'}
+            {!siteLanguage ? 'লোড হচ্ছে' : 'Loading Wait'}
           </Button>
         ) : (
           <Button className="font-bold text-white" onClick={handleClick}>

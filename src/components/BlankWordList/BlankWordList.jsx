@@ -11,7 +11,7 @@ const BlankWordList = () => {
         <div>
           {/* Heading  */}
           {!siteLanguage ? (
-            <Heading className="text-center text-2xl  font-bold">
+            <Heading className="text-center text-xl  font-bold">
               নিচে শূন্যস্থানসহ শব্দ দেয়া হল{' '}
             </Heading>
           ) : (

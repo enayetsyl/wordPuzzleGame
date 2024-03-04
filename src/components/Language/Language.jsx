@@ -11,10 +11,10 @@ const Language = () => {
           {siteLanguage ? 'Select Language:' : 'ভাষা নির্ধারণ করুন:'}
         </Heading>
         <Button
-          className="px-3 py-2 bg-theme text-white text-sm font-medium"
+          className="px-3 py-2 bg-theme text-white text-sm font-semibold"
           onClick={() => setSiteLanguage((prev) => !prev)}
         >
-          {siteLanguage ? 'English' : 'বাংলা'}
+          {siteLanguage ? 'বাংলা' : 'English'  }
         </Button>
       </div>
     </div>

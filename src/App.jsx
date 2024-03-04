@@ -13,7 +13,7 @@ import RandomQuranAayat from './components/RandomQuranAayat/RandomQuranAayat';
 function App() {
   const { isOn } = useGlobalContext();
   return (
-    <div className="relative">
+    <div className="relative ">
       <Bulb />
       {isOn ? (
         <div className="py-12 md:py-20">

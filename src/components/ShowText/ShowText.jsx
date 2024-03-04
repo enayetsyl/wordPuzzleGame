@@ -68,16 +68,13 @@ const ShowText = () => {
 
       {/* List of word from the image */}
       <div className="mt-12">
-        {!siteLanguage ? (
+        
           <Heading className="text-xl text-center font-bold">
-            ছবির শব্দের তালিকা
+            {
+              !siteLanguage ? 'ছবির শব্দের তালিকা' : 'Word List from Image'
+            }
           </Heading>
-        ) : (
-          <Heading className="text-xl text-center font-bold">
-            Word List from Image
-          </Heading>
-        )}
-
+        
         {/* Displaying word list */}
         <div className="border-2 border-theme rounded-xl p-6 overflow-x-hidden overflow-y-auto max-h-[400px] mt-6">
           {!isLoading && (

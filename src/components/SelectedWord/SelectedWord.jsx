@@ -10,7 +10,6 @@ const SelectedWord = () => {
     fillInTheBlankFunction,
     setChosenWord,
     language,
-    wordColor,
     setWordColor,
     siteLanguage,
   } = useGlobalContext();
@@ -43,15 +42,12 @@ const SelectedWord = () => {
   return (
     <div className="mx-5">
       {/* Heading */}
-      {!siteLanguage ? (
-        <Heading className="my-3 text-xl text-center font-bold mt-12">
-          উপরের তালিকা থেকে নির্বাচিত শব্দ
-        </Heading>
-      ) : (
-        <Heading className="my-3 text-xl text-center font-bold">
-          Selected words from above list
-        </Heading>
-      )}
+      <Heading className="my-3 text-xl text-center font-bold mt-12">
+        {
+          !siteLanguage ? 'উপরের তালিকা থেকে নির্বাচিত শব্দ':'Selected words from above list'
+        }
+      </Heading>
+    
 
       {/* Showing words that user selected */}
       <div className="border-2 border-theme rounded-xl p-6 overflow-x-hidden overflow-y-auto max-h-[400px] mt-6">
@@ -73,10 +69,9 @@ const SelectedWord = () => {
       {/* Color picker option */}
       {chosenWord?.length > 0 && (
         <>
-          {!siteLanguage ? (
-            <div className="mt-6">
+        <div className="mt-6">
               <h1 htmlFor="" className="font-medium text-xl">
-                অক্ষরের রঙ নির্বাচন করুন :{' '}
+              {!siteLanguage ?  'অক্ষরের রঙ নির্বাচন করুন :' : ' Select color for the letters:'}
               </h1>
               <div className="flex gap-x-4 my-1">
                 <label htmlFor="black">
@@ -86,7 +81,7 @@ const SelectedWord = () => {
                     id="black"
                     onClick={() => setWordColor('black')}
                   />
-                  কালো
+                  {!siteLanguage ?  ' কালো :' : ' Black'}
                 </label>
                 <label htmlFor="mixed">
                   <input
@@ -95,67 +90,33 @@ const SelectedWord = () => {
                     id="mixed"
                     onClick={() => setWordColor('mixed')}
                   />
-                  রঙিন
+                  {!siteLanguage ?  ' রঙিন :' : ' Mixed'}
                 </label>
               </div>
             </div>
-          ) : (
-            <div className="mt-6">
-              <h1 htmlFor="" className="font-medium text-xl">
-                Select color for the letters:
-              </h1>
-              <div className="flex gap-x-4 my-1">
-                <label htmlFor="black">
-                  <input
-                    type="radio"
-                    name="color"
-                    id="black"
-                    onClick={() => setWordColor('black')}
-                    className="ring-theme"
-                  />
-                  Black
-                </label>
-                <label htmlFor="mixed">
-                  <input
-                    type="radio"
-                    name="color"
-                    id="mixed"
-                    onClick={() => setWordColor('mixed')}
-                    className="ring-theme"
-                  />
-                  Mixed
-                </label>
-              </div>
-            </div>
-          )}
+         
           {/* Fill in the blanks button */}
 
           <Button
             className="text-lg text-white font-bold my-6 mr-3"
             onClick={handleFillInTheBlank}
           >
-            {!siteLanguage ? 'শূন্যস্থান' : '  Fill in the Blank'}
+            {!siteLanguage ? 'শূন্যস্থান' : 'Blank'}
           </Button>
         </>
       )}
 
       {language !== 'ben' &&
         chosenWord?.length > 0 &&
-        (!siteLanguage ? (
-          <Button
+        <Button
             className="text-lg text-white font-bold"
             onClick={handleRearrange}
           >
-            এলোমেলো
+           {
+              !siteLanguage ? "এলোমেলো" : " Rearrange"
+            }
           </Button>
-        ) : (
-          <Button
-            className="text-lg text-white font-bold"
-            onClick={handleRearrange}
-          >
-            Rearrange
-          </Button>
-        ))}
+        }
     </div>
   );
 };
