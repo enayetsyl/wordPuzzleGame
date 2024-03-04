@@ -8,7 +8,6 @@ import BlankWordList from './components/BlankWordList/BlankWordList';
 import Language from './components/Language/Language';
 import Bulb from './components/Bulb/Bulb';
 import { useGlobalContext } from './Context/GlobalContext';
-import DeveloperInfo from './components/DeveloperInfo/DeveloperInfo';
 import RandomQuranAayat from './components/RandomQuranAayat/RandomQuranAayat';
 function App() {
   const { isOn } = useGlobalContext();

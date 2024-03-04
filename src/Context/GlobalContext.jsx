@@ -40,10 +40,6 @@ const GlobalContextProvider = ({ children }) => {
     'the',
   ];
 
-  console.log('converted word list', wordList);
-  console.log('user chosen word', chosenWord);
-  console.log('rearranged array', rearrangedArray);
-  console.log('blank', blankWord);
 
   // Word list collected from user
 
@@ -71,7 +67,6 @@ const GlobalContextProvider = ({ children }) => {
   const rearrangeWords = (chosenWord) => {
     // Check if wordsArray is an array
     if (!Array.isArray(chosenWord)) {
-      console.error('Input is not an array');
       return;
     }
     const rearrangedArray = [];
@@ -108,7 +103,6 @@ const GlobalContextProvider = ({ children }) => {
     setBlankWord(shuffleWords);
   };
 
-  console.log(wordColor);
   // Value
   const value = {
     text,

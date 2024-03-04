@@ -23,7 +23,6 @@ const LanguageSelect = ({ setLanguage }) => {
   const { siteLanguage } = useGlobalContext();
 
   const handleLanguageSelect = (e) => {
-    console.log(Language);
     setLanguage(e.target.value);
   };
   return (
