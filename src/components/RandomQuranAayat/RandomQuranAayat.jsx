@@ -37,9 +37,9 @@ const RandomQuranAayat = () => {
   }, [quran]);
 
   return (
-    <div className="min-h-screen flex flex-col justify-center items-center ">
+    <div className=" flex flex-col justify-center items-center ">
       <div className="container">
-        <h1 className="text-2xl font-bold">My other work</h1>
+        {/* <h1 className="text-2xl font-bold">My other work</h1> */}
         <p></p>
       </div>
       {modalOpen && (
