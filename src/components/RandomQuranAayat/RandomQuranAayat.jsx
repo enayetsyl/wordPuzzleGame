@@ -7,7 +7,7 @@ const RandomQuranAayat = () => {
 
   const getQuran = () => {
     fetch(
-      'https://cdn.jsdelivr.net/gh/fawazahmed0/quran-api@1/editions/ben-zohurulhoque.min.json'
+      'quran.json'
     )
       .then((res) => res.json())
       .then((data) => {
@@ -45,7 +45,7 @@ const RandomQuranAayat = () => {
       {modalOpen && (
         <div className="fixed inset-0 w-full h-full flex justify-center items-center bg-black bg-opacity-50">
           <div className="bg-white p-8 rounded shadow-lg max-w-[600px]">
-            <h1 className="text-xl font-bold mb-4 truncate line-clamp-3 whitespace-normal">
+            <h1 className=" font-bold mb-4  whitespace-normal">
               {ayat?.text}
             </h1>
             <p className="text-gray-700">{`${ayat?.chapter} : ${ayat?.verse}`}</p>

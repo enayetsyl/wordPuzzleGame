@@ -26,7 +26,7 @@ function App() {
               <RearrangedWordList />
               <BlankWordList />
               {/* <DeveloperInfo /> */}
-              {/* <RandomQuranAayat /> */}
+              <RandomQuranAayat />
             </>
           </div>
         </div>
