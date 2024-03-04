@@ -24,7 +24,7 @@ const RearrangedWordList = () => {
           {/* Rearranged Word list */}
           <ul
             id="image-download"
-            className="space-y-1 h-36 border-2 border-theme overflow-y-auto my-4 rounded-xl p-4"
+            className="space-y-1  border-2 border-theme  my-4 rounded-xl p-4"
           >
             {rearrangedArray?.map((word, idx) => (
               <li key={idx} className="uppercase text-xl font-bold">

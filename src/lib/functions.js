@@ -41,7 +41,6 @@ export const shuffleArray = (array) => {
 export const makePdf = (rearrangedArray, language, id, title, fileName, wordColor) => {
   const element = document.getElementById(id);
   let yPosition = 10;
-
   const addImageToPdf = (imageData) => {
       const pdf = new jsPDF();
       pdf.text(title, 10, yPosition);
