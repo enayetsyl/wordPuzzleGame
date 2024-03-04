@@ -1,11 +1,5 @@
+const Heading = ({ children, className }) => {
+  return <h1 className={`${className}`}>{children}</h1>;
+};
 
-const Heading = ({children, className}) => {
-  
-  return (
-    <h1 className={className}>
-      {children}
-    </h1>
-  )
-}
-
-export default Heading
+export default Heading;

@@ -1,12 +1,13 @@
-
-const Button = ({children, className, onClick, disabled = false}) => {
+const Button = ({ children, className, onClick, disabled = false }) => {
   return (
-    <button className={`${className} rounded-lg  px-4 py-2`}
-    disabled={disabled}
-    onClick={onClick}>
+    <button
+      className={`${className} rounded-md px-6 py-2 bg-theme hover:bg-cyan-600 duration-300`}
+      disabled={disabled}
+      onClick={onClick}
+    >
       {children}
     </button>
-  )
-}
+  );
+};
 
-export default Button
+export default Button;
