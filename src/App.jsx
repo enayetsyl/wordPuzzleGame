@@ -16,7 +16,7 @@ function App() {
     <div className="relative ">
       <Bulb />
       {isOn ? (
-        <div className="pb-12 md:pb-20 pt-11">
+        <div className=" pt-11">
           <div className={`container px-4 mx-auto max-w-[1100px]`}>
             <>
               <Language />
