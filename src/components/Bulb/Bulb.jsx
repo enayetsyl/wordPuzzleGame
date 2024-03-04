@@ -5,64 +5,30 @@ import { useGlobalContext } from '../../Context/GlobalContext';
 
 const Bulb = () => {
   const { isOn, setIsOn } = useGlobalContext();
-  const style = `
-    .bulb{
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 200px
-      width: 200px;
-    }
-    img{
-      height: 200px;
-    }
-    .switch{
-      width: 200px;
-      height: 50px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    button{
-      border: none;
-      background-color: orangered;
-      color: white;
-      padding: 7px 15px;
-      cursor: pointer;
-    }
-    button:hover{
-      background-color:white;
-      color: #333333;
-    }
-    `;
 
   return (
-    <div className="bg-black">
-      <div
-        dangerouslySetInnerHTML={{ __html: `<style>${style}</style>` }}
-      ></div>
-      <div className="container mx-auto px-4">
-        <div className="bulb">
-          <div id="off" style={{ display: isOn ? 'none' : 'block' }}>
-            <img src={off} alt="" />
-          </div>
-          <div id="on" style={{ display: isOn ? 'block' : 'none' }}>
-            <img src={on} alt="" />
-          </div>
-        </div>
-        <div className="switch">
-          <button
-            onClick={() => setIsOn(false)}
-            style={{ display: isOn ? 'block' : 'none' }}
+    <div className={`${!isOn && 'bg-black'} pt-4`}>
+      <div className="container mx-auto px-4 max-w-[1100px]">
+        <div className="flex justify-end">
+          <div
+            className={`inline-flex gap-4 items-center justify-end ${
+              isOn && 'bg-primaryBg'
+            } p-6 rounded-xl`}
           >
-            OFF
-          </button>
-          <button
-            onClick={() => setIsOn(true)}
-            style={{ display: isOn ? 'none' : 'block' }}
-          >
-            ON
-          </button>
+            <div>
+              <img
+                src={!isOn ? off : on}
+                alt=""
+                className="h-[150px] w-auto object-cover"
+              />
+            </div>
+            <button
+              className="border-0 bg-theme text-white py-2 px-4 rounded hover:bg-primaryBg hover:text-white uppercase font-medium"
+              onClick={() => setIsOn((prev) => !prev)}
+            >
+              {isOn ? 'Off' : 'On'}
+            </button>
+          </div>
         </div>
       </div>
     </div>
