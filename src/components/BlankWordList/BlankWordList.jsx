@@ -1,10 +1,20 @@
+import { useRef } from 'react';
 import { useGlobalContext } from '../../Context/GlobalContext';
 import { getRandomColor, makePdf } from '../../lib/functions';
 import Button from '../Shared/Button';
 import Heading from '../Shared/Heading';
+import  { useReactToPrint } from 'react-to-print';
 
 const BlankWordList = () => {
   const { blankWord, language, wordColor, siteLanguage } = useGlobalContext();
+
+  const blankWordRef = useRef()
+
+  const handlePrint = useReactToPrint({
+    content: () => blankWordRef.current,
+    documentTitle: "blank-word",
+  })
+
   return (
     <>
       {blankWord?.length > 0 && (
@@ -23,9 +33,10 @@ const BlankWordList = () => {
           <ul
             id="gap-download"
             className="mt-6 border-2 border-theme rounded-xl p-4 grid grid-cols-1 sm:grid-cols-2 gap-3"
+            ref={blankWordRef}
           >
             {blankWord?.map((word, idx) => (
-              <li key={idx} className="text-2xl font-bold uppercase">
+              <li key={idx} className="text-2xl font-bold uppercase tracking-[8px]">
                 {word.split('').map((letter, index) => (
                   <span
                     key={index}
@@ -36,7 +47,7 @@ const BlankWordList = () => {
                     {letter}
                   </span>
                 ))}
-                :
+                
               </li>
             ))}
             <li className="text-white">.</li>
@@ -44,15 +55,7 @@ const BlankWordList = () => {
 
           <Button
             className="mt-6 font-bold text-white"
-            onClick={() =>
-              makePdf(
-                blankWord,
-                language,
-                'gap-download',
-                'Fill the word',
-                'Fill_in_the_blank',
-                wordColor
-              )
+            onClick={handlePrint
             }
           >
             {siteLanguage === 'ben' ? 'ডাউনলোড করুন' : 'Download'}
